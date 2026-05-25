@@ -1,0 +1,6 @@
+{
+  "name": "Gym Club Management App",
+  "description": "تطبيق متكامل لإدارة النادي الرياضي والاشتراكات مع مسح الباركود لتسجيل الحضور وتنبيهات انتهاء الصلاحية.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

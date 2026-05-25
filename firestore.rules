@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default catch-all deny rule
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- REUSABLE SECURITY PRIMITIVES ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- ENTITY VALIDATION BLUEPRINTS ---
+
+    // Member schema validation
+    function isValidMember(data) {
+      return data.keys().hasAll(['full_name', 'phone', 'sport_type', 'start_date', 'end_date', 'barcode_id', 'status'])
+        && data.keys().size() <= 10
+        && data.full_name is string && data.full_name.size() > 0 && data.full_name.size() <= 200
+        && data.phone is string && data.phone.size() >= 5 && data.phone.size() <= 30
+        && data.sport_type is string && (data.sport_type == 'Gym' || data.sport_type == 'Boxing' || data.sport_type == 'Swimming' || data.sport_type == 'Fitness' || data.sport_type == 'Yoga' || data.sport_type == 'Other')
+        && data.barcode_id is string && data.barcode_id.size() > 0 && data.barcode_id.size() <= 100
+        && data.status is string && (data.status == 'active' || data.status == 'expired')
+        && (data.get('created_at', null) == null || data.created_at is timestamp || data.created_at is string);
+    }
+
+    // Attendance validation
+    function isValidAttendance(data) {
+      return data.keys().hasAll(['member_id', 'member_name', 'checkin_time', 'checkin_date'])
+        && data.keys().size() <= 6
+        && data.member_id is string && data.member_id.size() > 0 && data.member_id.size() <= 128
+        && data.member_name is string && data.member_name.size() > 0 && data.member_name.size() <= 200
+        && data.checkin_time is string && data.checkin_time.size() >= 2 && data.checkin_time.size() <= 10
+        && data.checkin_date is string && data.checkin_date.size() >= 6 && data.checkin_date.size() <= 20;
+    }
+
+    // Notification validation
+    function isValidNotification(data) {
+      return data.keys().hasAll(['member_id', 'message', 'created_at', 'read_status'])
+        && data.keys().size() <= 6
+        && data.member_id is string && data.member_id.size() > 0 && data.member_id.size() <= 128
+        && data.message is string && data.message.size() > 0 && data.message.size() <= 500
+        && data.read_status is boolean;
+    }
+
+    // --- RULES FOR COLLECTIONS ---
+
+    match /members/{memberId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(memberId) && isValidMember(incoming());
+      allow update: if isSignedIn() && isValidId(memberId) && isValidMember(incoming()) && (
+        // Allow updating any fields from valid administrator actions
+        incoming().diff(existing()).affectedKeys().hasAny(['full_name', 'phone', 'sport_type', 'start_date', 'end_date', 'status', 'barcode_id'])
+      );
+      allow delete: if isSignedIn() && isValidId(memberId);
+    }
+
+    match /attendance/{attendanceId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(attendanceId) && isValidAttendance(incoming());
+      allow update: if isSignedIn() && isValidId(attendanceId) && isValidAttendance(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['checkin_time', 'checkin_date', 'member_name'])
+      );
+      allow delete: if isSignedIn() && isValidId(attendanceId);
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(notificationId) && isValidNotification(incoming());
+      allow update: if isSignedIn() && isValidId(notificationId) && isValidNotification(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['read_status'])
+      );
+      allow delete: if isSignedIn() && isValidId(notificationId);
+    }
+  }
+}
