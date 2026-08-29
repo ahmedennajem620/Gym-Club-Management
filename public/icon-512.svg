@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141417" />
+      <stop offset="100%" stop-color="#09090b" />
+    </linearGradient>
+    <linearGradient id="neonGrad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2ff54" />
+      <stop offset="100%" stop-color="#d2ff1f" />
+    </linearGradient>
+    <filter id="neonGlow512" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#d2ff1f" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad512)" stroke="#27272a" stroke-width="6"/>
+
+  <g filter="url(#neonGlow512)">
+    <rect x="110" y="160" width="36" height="192" rx="18" fill="url(#neonGrad512)"/>
+    <rect x="156" y="196" width="22" height="120" rx="11" fill="url(#neonGrad512)"/>
+    <rect x="178" y="242" width="156" height="28" rx="14" fill="#ffffff"/>
+    <path d="M 230 190 L 290 256 L 250 266 L 285 322" fill="none" stroke="#d2ff1f" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="334" y="196" width="22" height="120" rx="11" fill="url(#neonGrad512)"/>
+    <rect x="366" y="160" width="36" height="192" rx="18" fill="url(#neonGrad512)"/>
+  </g>
+
+  <text x="256" y="420" text-anchor="middle" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="44" letter-spacing="3">
+    GYM<tspan fill="#d2ff1f">FLOW</tspan>
+  </text>
+</svg>

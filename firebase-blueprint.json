@@ -1,0 +1,124 @@
+{
+  "entities": {
+    "Member": {
+      "title": "Member",
+      "description": "Gym club member profile with subscription details",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the member"
+        },
+        "full_name": {
+          "type": "string",
+          "description": "Full name of the member"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the member"
+        },
+        "sport_type": {
+          "type": "string",
+          "enum": ["Gym", "Boxing", "Swimming", "Fitness", "Yoga", "Other"],
+          "description": "The sport type the member is subscribed to"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The starting date of the subscription"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The ending date of the subscription"
+        },
+        "barcode_id": {
+          "type": "string",
+          "description": "Unique barcode or QR ID for scan check-in"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "expired"],
+          "description": "Subscription state"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when member was registered"
+        }
+      },
+      "required": ["full_name", "phone", "sport_type", "start_date", "end_date", "barcode_id", "status"]
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "Daily attendance check-in record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique record ID"
+        },
+        "member_id": {
+          "type": "string",
+          "description": "ID of the checked-in member"
+        },
+        "member_name": {
+          "type": "string",
+          "description": "Name of the checked-in member"
+        },
+        "checkin_time": {
+          "type": "string",
+          "description": "Time of checkin (e.g. HH:MM)"
+        },
+        "checkin_date": {
+          "type": "string",
+          "description": "Date of checkin (e.g. YYYY-MM-DD)"
+        }
+      },
+      "required": ["member_id", "member_name", "checkin_time", "checkin_date"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Subscription alert for imminent expiry or expired state",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique notification ID"
+        },
+        "member_id": {
+          "type": "string",
+          "description": "Associated member ID"
+        },
+        "message": {
+          "type": "string",
+          "description": "Arabic message for the alert"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        },
+        "read_status": {
+          "type": "boolean",
+          "description": "Whether the admin read the notification"
+        }
+      },
+      "required": ["member_id", "message", "created_at", "read_status"]
+    }
+  },
+  "firestore": {
+    "/members/{memberId}": {
+      "schema": "Member",
+      "description": "Gym members directory"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": "Attendance",
+      "description": "Check-in log entries"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "Subscription alerts"
+    }
+  }
+}
