@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/models.dart';
 import '../services/gym_store.dart';
@@ -45,7 +45,7 @@ class _MembersScreenState extends State<MembersScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(LucideIcons.userPlus, color: AppColors.primary),
+            icon: const Icon(Icons.person_add, color: AppColors.primary),
             tooltip: 'إضافة مشترك جديد',
             onPressed: () {
               Navigator.push(
@@ -71,7 +71,7 @@ class _MembersScreenState extends State<MembersScreen> {
                   decoration: InputDecoration(
                     hintText: 'البحث بالاسم، رقم الهاتف، أو الباركود...',
                     hintStyle: GoogleFonts.cairo(color: AppColors.textMuted, fontSize: 13),
-                    prefixIcon: const Icon(LucideIcons.search, color: AppColors.textMuted, size: 20),
+                    prefixIcon: const Icon(Icons.search, color: AppColors.textMuted, size: 20),
                     filled: true,
                     fillColor: AppColors.background,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -126,7 +126,7 @@ class _MembersScreenState extends State<MembersScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(LucideIcons.users, size: 48, color: AppColors.textMuted),
+                        const Icon(Icons.people, size: 48, color: AppColors.textMuted),
                         const SizedBox(height: 12),
                         Text(
                           'لا يوجد مشتركين يطابقون خيارات البحث',
@@ -255,13 +255,13 @@ class _MembersScreenState extends State<MembersScreen> {
               // WhatsApp Quick Contact
               IconButton(
                 onPressed: () => _launchWhatsApp(member.phone, member.fullName),
-                icon: const Icon(LucideIcons.messageCircle, color: AppColors.emerald, size: 20),
+                icon: const Icon(Icons.message, color: AppColors.emerald, size: 20),
                 tooltip: 'مراسلة عبر واتساب',
               ),
               // View Barcode Dialog
               IconButton(
                 onPressed: () => showBarcodeDialog(context, member),
-                icon: const Icon(LucideIcons.qrCode, color: AppColors.primary, size: 20),
+                icon: const Icon(Icons.qr_code, color: AppColors.primary, size: 20),
                 tooltip: 'عرض الباركود',
               ),
               // Renew
@@ -288,13 +288,13 @@ class _MembersScreenState extends State<MembersScreen> {
                     MaterialPageRoute(builder: (_) => AddEditMemberScreen(memberToEdit: member)),
                   );
                 },
-                icon: const Icon(LucideIcons.edit2, color: AppColors.blue, size: 18),
+                icon: const Icon(Icons.edit, color: AppColors.blue, size: 18),
                 tooltip: 'تعديل',
               ),
               // Delete Member
               IconButton(
                 onPressed: () => _confirmDelete(context, store, member),
-                icon: const Icon(LucideIcons.trash2, color: AppColors.red, size: 18),
+                icon: const Icon(Icons.delete, color: AppColors.red, size: 18),
                 tooltip: 'حذف',
               ),
             ],

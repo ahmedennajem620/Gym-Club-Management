@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../services/gym_store.dart';
 import '../widgets/custom_widgets.dart';
@@ -78,13 +78,13 @@ class DashboardScreen extends StatelessWidget {
                             MaterialPageRoute(builder: (_) => const ScannerScreen()),
                           );
                         },
-                        icon: const Icon(LucideIcons.scanLine, color: AppColors.primary),
+                        icon: const Icon(Icons.qr_code_scanner, color: AppColors.primary),
                         tooltip: 'ماسح الباركود',
                       ),
                       const SizedBox(width: 8),
                       PrimaryButton(
                         text: 'مشترك جديد',
-                        icon: LucideIcons.userPlus,
+                        icon: Icons.person_add,
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -111,7 +111,7 @@ class DashboardScreen extends StatelessWidget {
                     title: 'إجمالي المشتركين',
                     value: stats.totalMembers.toString(),
                     subtitle: 'نسبة النشطين: $activePercentage%',
-                    icon: LucideIcons.users,
+                    icon: Icons.people,
                     iconColor: AppColors.blue,
                     iconBg: AppColors.blue.withOpacity(0.12),
                     onTap: () => onNavigateTab(1), // Members tab
@@ -120,7 +120,7 @@ class DashboardScreen extends StatelessWidget {
                     title: 'حضور اليوم',
                     value: stats.attendanceToday.toString(),
                     subtitle: 'تسجيلات الحضور اليوم',
-                    icon: LucideIcons.calendarCheck,
+                    icon: Icons.event_available,
                     iconColor: AppColors.emerald,
                     iconBg: AppColors.emerald.withOpacity(0.12),
                     onTap: () => onNavigateTab(2), // Attendance tab
@@ -129,7 +129,7 @@ class DashboardScreen extends StatelessWidget {
                     title: 'تنتهي قريباً',
                     value: stats.expiringSoonCount.toString(),
                     subtitle: 'خلال أقل من 3 أيام',
-                    icon: LucideIcons.alertTriangle,
+                    icon: Icons.warning_amber_rounded,
                     iconColor: AppColors.amber,
                     iconBg: AppColors.amber.withOpacity(0.12),
                     onTap: () => onNavigateTab(1),
@@ -138,7 +138,7 @@ class DashboardScreen extends StatelessWidget {
                     title: 'اشتراكات منتهية',
                     value: stats.expiredCount.toString(),
                     subtitle: 'بحاجة إلى التجديد',
-                    icon: LucideIcons.userX,
+                    icon: Icons.person_off,
                     iconColor: AppColors.red,
                     iconBg: AppColors.red.withOpacity(0.12),
                     onTap: () => onNavigateTab(1),
@@ -161,7 +161,7 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Icon(LucideIcons.alertCircle, color: AppColors.amber, size: 20),
+                          const Icon(Icons.info_outline, color: AppColors.amber, size: 20),
                           const SizedBox(width: 8),
                           Text(
                             'اشتراكات على وشك الانتهاء',
@@ -244,7 +244,7 @@ class DashboardScreen extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
-                        const Icon(LucideIcons.activity, color: AppColors.primary, size: 20),
+                        const Icon(Icons.trending_up, color: AppColors.primary, size: 20),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -364,7 +364,7 @@ class DashboardScreen extends StatelessWidget {
                                         color: AppColors.emerald.withOpacity(0.12),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
-                                      child: const Icon(LucideIcons.check, color: AppColors.emerald, size: 16),
+                                      child: const Icon(Icons.check, color: AppColors.emerald, size: 16),
                                     ),
                                     const SizedBox(width: 12),
                                     Text(

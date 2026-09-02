@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter/material.dart';
 import '../services/gym_store.dart';
 import '../widgets/custom_widgets.dart';
 
@@ -32,7 +32,7 @@ class NotificationsScreen extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: const Icon(LucideIcons.trash2, color: AppColors.red, size: 18),
+              icon: const Icon(Icons.delete, color: AppColors.red, size: 18),
               onPressed: () {
                 store.clearAllNotifications();
                 showAppSnackBar(context, 'تم مسح كافة التنبيهات');
@@ -46,7 +46,7 @@ class NotificationsScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(LucideIcons.bellOff, size: 48, color: AppColors.textMuted),
+                  const Icon(Icons.notifications_off, size: 48, color: AppColors.textMuted),
                   const SizedBox(height: 12),
                   Text(
                     'لا توجد أي تنبيهات جديدة في الوقت الحالي',
@@ -79,7 +79,7 @@ class NotificationsScreen extends StatelessWidget {
                           color: AppColors.amber.withOpacity(0.15),
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(LucideIcons.alertCircle, color: AppColors.amber, size: 18),
+                        child: const Icon(Icons.info_outline, color: AppColors.amber, size: 18),
                       ),
                       const SizedBox(width: 14),
                       Expanded(
@@ -103,7 +103,7 @@ class NotificationsScreen extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(LucideIcons.trash2, size: 16, color: AppColors.textMuted),
+                        icon: const Icon(Icons.delete, size: 16, color: AppColors.textMuted),
                         onPressed: () => store.deleteNotification(notif.id),
                       ),
                     ],

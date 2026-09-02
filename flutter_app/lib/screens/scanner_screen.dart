@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../models/models.dart';
 import '../services/gym_store.dart';
@@ -80,8 +79,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 ),
                 child: Icon(
                   success
-                      ? LucideIcons.checkCircle
-                      : (isExpired ? LucideIcons.alertTriangle : LucideIcons.xCircle),
+                      ? Icons.check_circle
+                      : (isExpired ? Icons.warning_amber_rounded : Icons.cancel),
                   color: success
                       ? AppColors.emerald
                       : (isExpired ? AppColors.red : AppColors.amber),
@@ -212,7 +211,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         actions: [
           IconButton(
             icon: Icon(
-              _torchEnabled ? LucideIcons.flashlight : LucideIcons.flashlightOff,
+              _torchEnabled ? Icons.flashlight_on : Icons.flashlight_off,
               color: _torchEnabled ? AppColors.primary : Colors.white,
             ),
             onPressed: () {
@@ -221,7 +220,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
             },
           ),
           IconButton(
-            icon: const Icon(LucideIcons.refreshCw),
+            icon: const Icon(Icons.refresh),
             onPressed: () => _cameraController.switchCamera(),
           ),
         ],

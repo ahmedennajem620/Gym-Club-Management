@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:intl/intl.dart';
 import '../models/models.dart';
 import '../services/gym_store.dart';
@@ -186,7 +185,7 @@ class _AddEditMemberScreenState extends State<AddEditMemberScreen> {
                 label: 'الاسم الكامل *',
                 hint: 'مثال: محمد العمري',
                 controller: _nameController,
-                prefixIcon: LucideIcons.user,
+                prefixIcon: Icons.person,
                 validator: (val) => val == null || val.trim().isEmpty ? 'يرجى إدخال اسم المشترك' : null,
               ),
               const SizedBox(height: 16),
@@ -197,7 +196,7 @@ class _AddEditMemberScreenState extends State<AddEditMemberScreen> {
                 hint: '0612345678',
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
-                prefixIcon: LucideIcons.phone,
+                prefixIcon: Icons.phone,
                 validator: (val) => val == null || val.trim().isEmpty ? 'يرجى إدخال رقم الهاتف' : null,
               ),
               const SizedBox(height: 16),
@@ -208,7 +207,7 @@ class _AddEditMemberScreenState extends State<AddEditMemberScreen> {
                 hint: 'member@example.com',
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: LucideIcons.mail,
+                prefixIcon: Icons.mail,
               ),
               const SizedBox(height: 16),
 
@@ -280,7 +279,7 @@ class _AddEditMemberScreenState extends State<AddEditMemberScreen> {
                       label: 'تاريخ البدء',
                       hint: DateFormat('yyyy-MM-dd').format(_startDate),
                       readOnly: true,
-                      prefixIcon: LucideIcons.calendar,
+                      prefixIcon: Icons.calendar_today,
                       onTap: () => _pickDate(isStart: true),
                     ),
                   ),
@@ -290,7 +289,7 @@ class _AddEditMemberScreenState extends State<AddEditMemberScreen> {
                       label: 'تاريخ الانتهاء',
                       hint: DateFormat('yyyy-MM-dd').format(_endDate),
                       readOnly: true,
-                      prefixIcon: LucideIcons.calendarCheck,
+                      prefixIcon: Icons.event_available,
                       onTap: () => _pickDate(isStart: false),
                     ),
                   ),
@@ -315,7 +314,7 @@ class _AddEditMemberScreenState extends State<AddEditMemberScreen> {
                       label: 'سعر الاشتراك (درهم)',
                       controller: _feeController,
                       keyboardType: TextInputType.number,
-                      prefixIcon: LucideIcons.dollarSign,
+                      prefixIcon: Icons.attach_money,
                     ),
                   ),
                 ],
@@ -327,7 +326,7 @@ class _AddEditMemberScreenState extends State<AddEditMemberScreen> {
                 width: double.infinity,
                 child: PrimaryButton(
                   text: isEditMode ? 'حفظ التعديلات' : 'إضافة المشترك وإصدار البطاقة',
-                  icon: LucideIcons.check,
+                  icon: Icons.check,
                   isLoading: _isSaving,
                   onPressed: _submit,
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../services/gym_store.dart';
 import '../widgets/custom_widgets.dart';
@@ -44,7 +44,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         actions: [
           if (allAttendance.isNotEmpty)
             IconButton(
-              icon: const Icon(LucideIcons.trash2, color: AppColors.red),
+              icon: const Icon(Icons.delete, color: AppColors.red),
               tooltip: 'مسح سجل الحضور',
               onPressed: () => _confirmClearAll(context, store),
             ),
@@ -64,7 +64,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   decoration: InputDecoration(
                     hintText: 'البحث باسم المشترك في سجل الحضور...',
                     hintStyle: GoogleFonts.cairo(color: AppColors.textMuted, fontSize: 13),
-                    prefixIcon: const Icon(LucideIcons.search, color: AppColors.textMuted, size: 20),
+                    prefixIcon: const Icon(Icons.search, color: AppColors.textMuted, size: 20),
                     filled: true,
                     fillColor: AppColors.background,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -104,7 +104,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     ),
                     const SizedBox(width: 8),
                     IconButton(
-                      icon: const Icon(LucideIcons.calendar, color: AppColors.primary),
+                      icon: const Icon(Icons.calendar_today, color: AppColors.primary),
                       tooltip: 'اختيار تاريخ محدد',
                       onPressed: () async {
                         final picked = await showDatePicker(
@@ -140,7 +140,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(LucideIcons.calendarX, size: 48, color: AppColors.textMuted),
+                        const Icon(Icons.event_busy, size: 48, color: AppColors.textMuted),
                         const SizedBox(height: 12),
                         Text(
                           'لا توجد تسجيلات حضور في هذا التاريخ',
@@ -173,7 +173,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                                     color: AppColors.emerald.withOpacity(0.12),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: const Icon(LucideIcons.check, color: AppColors.emerald, size: 18),
+                                  child: const Icon(Icons.check, color: AppColors.emerald, size: 18),
                                 ),
                                 const SizedBox(width: 14),
                                 Column(
@@ -215,7 +215,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                                 ),
                                 const SizedBox(width: 8),
                                 IconButton(
-                                  icon: const Icon(LucideIcons.trash2, color: AppColors.red, size: 16),
+                                  icon: const Icon(Icons.delete, color: AppColors.red, size: 16),
                                   onPressed: () {
                                     store.deleteAttendance(item.id);
                                     showAppSnackBar(context, 'تم حذف التسجيل بنجاح');

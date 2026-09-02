@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons/lucide_icons.dart';
+import 'package:flutter/material.dart';
 import '../services/gym_store.dart';
 import '../services/supabase_service.dart';
 import '../widgets/custom_widgets.dart';
@@ -93,7 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Row(
                     children: [
-                      const Icon(LucideIcons.building, color: AppColors.primary, size: 20),
+                      const Icon(Icons.business, color: AppColors.primary, size: 20),
                       const SizedBox(width: 8),
                       Text(
                         'الملف التعريفي للنادي',
@@ -105,26 +105,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   CustomTextField(
                     label: 'اسم النادي الرياضي',
                     controller: _clubNameController,
-                    prefixIcon: LucideIcons.dumbbell,
+                    prefixIcon: Icons.fitness_center,
                   ),
                   const SizedBox(height: 12),
                   CustomTextField(
                     label: 'رقم واتساب الرسمي',
                     controller: _clubWhatsappController,
-                    prefixIcon: LucideIcons.phone,
+                    prefixIcon: Icons.phone,
                     keyboardType: TextInputType.phone,
                   ),
                   const SizedBox(height: 12),
                   CustomTextField(
                     label: 'بريد الإدارة الإلكتروني',
                     controller: _ownerEmailController,
-                    prefixIcon: LucideIcons.mail,
+                    prefixIcon: Icons.mail,
                     keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(height: 16),
                   PrimaryButton(
                     text: 'حفظ الإعدادات',
-                    icon: LucideIcons.save,
+                    icon: Icons.save,
                     onPressed: _saveGeneralSettings,
                   ),
                 ],
@@ -145,7 +145,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Row(
                     children: [
-                      const Icon(LucideIcons.activity, color: AppColors.primary, size: 20),
+                      const Icon(Icons.trending_up, color: AppColors.primary, size: 20),
                       const SizedBox(width: 8),
                       Text(
                         'إدارة الرياضات والأنشطة (${sports.length})',
@@ -168,7 +168,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         padding: const EdgeInsets.only(top: 24.0),
                         child: PrimaryButton(
                           text: 'إضافة',
-                          icon: LucideIcons.plus,
+                          icon: Icons.add,
                           onPressed: _addSport,
                         ),
                       ),
@@ -183,7 +183,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         label: Text(s, style: GoogleFonts.cairo(color: Colors.white, fontWeight: FontWeight.w600)),
                         backgroundColor: AppColors.background,
                         side: const BorderSide(color: AppColors.border),
-                        deleteIcon: const Icon(LucideIcons.trash2, size: 16, color: AppColors.red),
+                        deleteIcon: const Icon(Icons.delete, size: 16, color: AppColors.red),
                         onDeleted: sports.length > 1
                             ? () {
                                 store.deleteSport(s);
@@ -214,7 +214,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: [
                       Row(
                         children: [
-                          const Icon(LucideIcons.database, color: AppColors.emerald, size: 20),
+                          const Icon(Icons.storage, color: AppColors.emerald, size: 20),
                           const SizedBox(width: 8),
                           Text(
                             'ربط Supabase السحابي',
@@ -259,7 +259,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 },
                           icon: _isTesting
                               ? const SizedBox(width: 14, height: 14, child: CircularProgressIndicator(strokeWidth: 2))
-                              : const Icon(LucideIcons.activity, size: 16, color: AppColors.emerald),
+                              : const Icon(Icons.trending_up, size: 16, color: AppColors.emerald),
                           label: Text('فحص الاتصال', style: GoogleFonts.cairo(fontSize: 12, color: Colors.white)),
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(color: AppColors.border),
@@ -282,7 +282,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 },
                           icon: _isPushing
                               ? const SizedBox(width: 14, height: 14, child: CircularProgressIndicator(strokeWidth: 2))
-                              : const Icon(LucideIcons.uploadCloud, size: 16, color: Colors.black),
+                              : const Icon(Icons.cloud_upload, size: 16, color: Colors.black),
                           label: Text('رفع للـ Cloud', style: GoogleFonts.cairo(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black)),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.emerald,
@@ -305,7 +305,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 },
                           icon: _isSyncing
                               ? const SizedBox(width: 14, height: 14, child: CircularProgressIndicator(strokeWidth: 2))
-                              : const Icon(LucideIcons.downloadCloud, size: 16, color: AppColors.primary),
+                              : const Icon(Icons.cloud_download, size: 16, color: AppColors.primary),
                           label: Text('جلب البيانات', style: GoogleFonts.cairo(fontSize: 12, color: Colors.white)),
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(color: AppColors.border),
@@ -326,7 +326,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           Clipboard.setData(const ClipboardData(text: SupabaseService.sqlSchema));
                           showAppSnackBar(context, 'تم نسخ استعلام SQL Schema إلى الحافظة!');
                         },
-                        icon: const Icon(LucideIcons.copy, size: 14, color: AppColors.emerald),
+                        icon: const Icon(Icons.copy_all, size: 14, color: AppColors.emerald),
                         label: Text('نسخ كود إنشاء الجداول (SQL)', style: GoogleFonts.cairo(color: AppColors.emerald, fontSize: 12, fontWeight: FontWeight.bold)),
                       ),
                       TextButton(
@@ -363,7 +363,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   store.logout();
                   showAppSnackBar(context, 'تم تسجيل الخروج بنجاح');
                 },
-                icon: const Icon(LucideIcons.logOut, color: AppColors.red, size: 18),
+                icon: const Icon(Icons.logout, color: AppColors.red, size: 18),
                 label: Text('تسجيل الخروج من الحساب', style: GoogleFonts.cairo(color: AppColors.red, fontWeight: FontWeight.bold)),
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: AppColors.red),
